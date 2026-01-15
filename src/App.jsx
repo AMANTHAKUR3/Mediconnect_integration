@@ -11,7 +11,7 @@ import { m3Routes } from "../modules/m3/routes";
 
 import { Module4Provider } from "../modules/m4/module-2.4-ehealth-ui/src/m4context/context";
 import { RoleProvider } from "../src/Context/RoleContext";
-import { AppointmentProvider } from "./context/AppointmentContext";
+import { AppointmentProvider } from "./Context/AppointmentContext";
 
 import DoctorDashboard from "./Components/Dashboards/DoctorDashboard";
 import PatientDashboard from "./Components/Dashboards/PatientDashboard";
@@ -19,6 +19,8 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import Appointments from "./pages/Appointments";
 import ViewAppointments from "./pages/ViewAppointments";
 import DoctorAppointments from "./pages/DoctorAppointments";
+import PatientVideoCall from "./pages/PatientVideoCall";
+import DoctorVideoCall from "./pages/DoctorVideoCall";
 
 
 
@@ -72,6 +74,7 @@ export default function App() {
               <Route element={<ProtectedRoute allowedRoles={["doctor"]} />}>
                 <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
                 <Route path="/doctor/appointments" element={<DoctorAppointments />} />
+                <Route path="/doctor/videocall" element={<DoctorVideoCall />} />
               </Route>
 
               {/* Patient segment protected */}
@@ -79,6 +82,7 @@ export default function App() {
                 <Route path="/patient-dashboard" element={<PatientDashboard />} />
                 <Route path="/appointments" element={<Appointments />} />
                 <Route path="/appointments/view" element={<ViewAppointments />} />
+                <Route path="/patient/videocall" element={<PatientVideoCall />} />
               </Route>
 
               {/* Fallback */}
