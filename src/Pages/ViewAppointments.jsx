@@ -470,14 +470,6 @@ const ViewAppointments = () => {
               </div>
             </div>
 
-            {/* Reason for Visit */}
-            {selectedAppointment.reasonForVisit && (
-              <div className="mb-6">
-                <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Reason for Visit</h4>
-                <p className="text-gray-700 bg-gray-50 p-4 rounded-lg">{selectedAppointment.reasonForVisit}</p>
-              </div>
-            )}
-
             {/* Close Button */}
             <button
               onClick={() => setShowDetailsModal(false)}
