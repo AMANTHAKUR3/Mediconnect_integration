@@ -147,7 +147,7 @@ If `data.sql` exists, Spring will load it at startup (see `spring.sql.init.mode`
 
 ## 📚 API Reference (Draft)
 > Base URL assumed: `/api` (update if different). Only representative payloads are shown—align with your DTOs.
-
+> can be viewed in detail by using swagger :  http//localhost:8083/swagger-ui/index.html# 
 ### 1) Auth (m1)
 **Register**
 ```http
@@ -272,7 +272,7 @@ GET /api/prescriptions/patients?doctorId
 ```
 GET /api/prescriptions/medicines
 ```
-            [
+[
   {
     "id": 0,
     "name": "string"
@@ -331,6 +331,8 @@ GET /api/reports
   }
 ]
 ```
+
+
 
 ## 📝 Coding Standards & Conventions
 - Layered package structure by **module** (m1..m5)
