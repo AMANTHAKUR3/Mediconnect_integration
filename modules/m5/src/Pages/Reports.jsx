@@ -1,85 +1,3 @@
-// import { useEffect, useState } from "react";
-// import { ReportTable } from "../components/ReportComponents/ReportTable";
-// import { getReportsData } from "../Services/ReportsService";
-// import { Reportgeneration } from "../components/ReportComponents/Reportgeneration";
-// import { ReportView } from "../components/ReportComponents/ReportView";
-
-// export const Reports = () => {
-//   const [Report, setReport] = useState([]);
-//   const [ReportSelectionModal, setReportSelectionModal] = useState(false);
-//   const [ReportViewModal, setReportViewModal] = useState(false);
-//   const [CurrentReport, setCurrentReport] = useState({})
-//   const [format, setFormat] = useState("");
-//   const [periodType, setPeriodType] = useState("");
-//   const [selectedDate, setSelectedDate] = useState("");
-//   const generatedreports = []
-
-//   const onGenerate = ({ periodType, selectedDate }) => {
-//     generatedreports.push({ periodType, selectedDate })
-//   }
-
-//   const handleGenerate = () => {
-//     if (!periodType || !selectedDate) return;
-
-//     onGenerate({
-//       periodType,
-//       selectedDate,
-//     });
-
-//     setReportSelectionModal(prev => !prev)
-//     setPeriodType("");
-//     setSelectedDate("");
-//   };
-
-//   const handleDownload = () => {
-//     setReportViewModal(prev => !prev);
-//   }
-
-
-
-//   useEffect(() => {
-//     const data = getReportsData();
-//     setReport(data);
-//   }, [])
-
-//   return (
-//     <div className="p-6 mx-auto max-w-[70%]" >
-//       <div className="flex flex-col gap-10 mb-4 ">
-//         <h1 className="text-2xl font-semibold mb-6">Reports & Compliance</h1>
-//         <button className="bg-blue-500 hover:bg-blue-300 w-fit p-3 rounded text-white mb" onClick={() => setReportSelectionModal(prev => !prev)}> Generate Report </button>
-//       </div>
-
-//       {ReportSelectionModal &&  
-//       <Reportgeneration 
-//         setReportSelectionModal = {setReportSelectionModal}
-//         periodType = {periodType}
-//         setCurrentReport = {setPeriodType}
-//         setSelectedDate = {setSelectedDate}
-//         handleGenerate = {handleGenerate}
-//         setPeriodType={setPeriodType}
-//         />
-//       }
-
-//       {ReportViewModal && <ReportView 
-//       CurrentReport= {CurrentReport}
-//       format = {format}
-//       handleDownload = {handleDownload}
-//       setFormat = {setFormat}
-//       setReportViewModal = {setReportViewModal}
-      
-//       />}
-
-//       <ReportTable reports={Report}
-//         setReportViewModal={setReportViewModal}
-//         setCurrentReport={setCurrentReport}
-//       />
-
-//     </div>
-//   );
-// };
-
-
-
 import { useEffect, useState } from "react";
 import { ReportTable } from "../components/ReportComponents/ReportTable";
 import { getReportsData } from "../Services/ReportsService";
@@ -95,6 +13,7 @@ export const Reports = () => {
   const [periodType, setPeriodType] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const generatedreports = [];
+  const [loading, setLoading] = useState(true);
 
   const onGenerate = ({ periodType, selectedDate }) => {
     generatedreports.push({ periodType, selectedDate });
@@ -117,11 +36,31 @@ export const Reports = () => {
     setReportViewModal(prev => !prev);
   };
 
-  useEffect(() => {
-    const data = getReportsData();
-    setReport(data);
+  useEffect( () => {
+    // const data = getReportsData();
+    const fetchReports = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("http://localhost:8083/api/reports");
+        
+        if (!response.ok) {
+          throw new Error(`Server responded with status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setReport(data);
+      } catch (error) {
+        console.error("Failed to fetch reports:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReports();
   }, []);
 
+
+  if (loading) return <div>Loading reports from database...</div>;
   return (
     <div
       className="

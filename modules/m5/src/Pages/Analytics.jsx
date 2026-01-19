@@ -7,7 +7,7 @@ import AnalyticsInsights from "../components/AnalyticsComponents/AnalyticsInsigh
 
 export default function Analytics() {
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className=" m-auto max-w-[70%] bg-gray-50 min-h-screen">
       <AnalyticsHeader />
 
       <AnalyticsFilter />
@@ -44,3 +44,9 @@ export default function Analytics() {
     </div>
   );
 }
+
+
+
+
+
+

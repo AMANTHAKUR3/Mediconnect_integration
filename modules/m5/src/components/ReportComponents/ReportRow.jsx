@@ -10,10 +10,10 @@ export const ReportRow = ({ report, setReportViewModal, setCurrentReport }) => {
         transition
       "
     >
-      <td className="p-4 font-medium text-slate-800">{report.reportId}</td>
+      <td className="p-4 font-medium text-slate-800">{report.id}</td>
       <td className="p-4 text-slate-700">{report.period}</td>
-      <td className="p-4 text-slate-700">{report.recoveryRate}%</td>
-      <td className="p-4 text-slate-700">{report.readmissionRate}%</td>
+      <td className="p-4 text-slate-700">{report.rateRecovery}%</td>
+      <td className="p-4 text-slate-700">{report.rateReadmission}%</td>
 
       <td className="p-4 text-center rounded-lg">
         <button
