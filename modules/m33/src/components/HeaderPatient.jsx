@@ -10,7 +10,6 @@ export const Header = () => {
     const [isProfileOpen, setIsProfileOpen] = useState(false)
     return (
         <div className=" bg-slate-50">
-            
             {/* GLOBAL CLINICAL HEADER */}
             <header className="bg-white border-b border-slate-200  top-0 z-[100]">
                 <div className="max-w-7xl mx-auto px-6 flex items-center justify-between py-4">
@@ -20,12 +19,12 @@ export const Header = () => {
                         <h1 className="text-xl font-black text-slate-900 tracking-tight leading-none">
                             MediConnect
                         </h1>
-                        <h2 className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em] mt-1">
+                        {/* <h2 className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em] mt-1">
                             EHR Management
-                        </h2>
+                        </h2> */}
                     </div>
 
-                    <div className="relative ">
+                    <div className="relative">
                         <button
                             onClick={() => setIsProfileOpen(!isProfileOpen)}
                             className="flex items-center gap-3 p-1 pr-3 rounded-full hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200 cursor-pointer"
@@ -35,8 +34,7 @@ export const Header = () => {
                                 DP
                             </div>
                             <div className="hidden sm:block text-left">
-                                <div className="text-[11px] font-black text-slate-900 leading-none">Dr. Patel</div>
-                                <div className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">Chief Surgeon</div>
+                                <div className="text-[11px] font-black text-slate-900 leading-none">Mr. Manokar Singh</div>
                             </div>
                             <svg className={`w-3 h-3 text-slate-400 transition-transform ${isProfileOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 9l-7 7-7-7" />
@@ -45,7 +43,7 @@ export const Header = () => {
 
                         {/* DROPDOWN MENU */}
                         {isProfileOpen && (
-                            <div className="absolute right-0 mt-2 w-48 bg-white border border-slate-200 rounded-2xl shadow-xl py-2 z-[999] animate-in fade-in zoom-in-95 duration-200">
+                            <div className="absolute right-0 mt-2 w-48 bg-white border border-slate-200 rounded-2xl shadow-xl py-2 animate-in fade-in zoom-in-95 duration-200">
 
                                 <button className="w-full text-left px-4 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 flex items-center gap-2 cursor-pointer"
                                     onClick={() => {

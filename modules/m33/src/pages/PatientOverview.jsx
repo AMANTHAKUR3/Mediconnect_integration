@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getBundleById } from '../data/db'
 import HeaderBar from '../components/HeaderBar'
@@ -7,11 +7,11 @@ import RecordSummaryCard from '../components/RecordSummaryCard'
 import DiagnosesTimeline from '../components/DiagnosesTimeline'
 import LabResults from '../components/LabResults'
 import DiagnosisEditor from '../components/DiagnosisEditor'
-// import PrivacyConsentBanner from '../components/PrivacyConsentBanner'
+import PrivacyConsentBanner from '../components/PrivacyConsentBanner'
 import AuditTrailPreview from '../components/AuditTrailPreview'
 import FooterBar from '../components/FooterBar'
 import Modal from '../components/Modal'
-// import ConsentDetails from '../components/ConsentDetails'
+import ConsentDetails from '../components/ConsentDetails'
 import { toFHIR } from '../utils/fhir'
 import { downloadJSON } from '../utils/download'
 
@@ -35,11 +35,8 @@ export default function PatientOverview(){
 
   function onSave(){
     pushAudit({ user: 'Dr. Patel', action: 'Update', target: 'Record', details: 'Saved changes' })
-    
-    alert('Record saved (demo)');
+    alert('Record saved (demo)')
   }
-
-
   function onDiscard(){
     pushAudit({ user: 'Dr. Patel', action: 'Update', target: 'Record', details: 'Discarded changes' })
     alert('Changes discarded (demo)')
@@ -89,23 +86,19 @@ export default function PatientOverview(){
     pushAudit({ user: 'System', action: 'Download', target: 'FHIR JSON', details: `Exported ${patient.id}` })
   }
 
-// useEffect(()=>{
-//   //code to post diagnosis
-// },[diagnoses])
-
   return (
     <div className="space-y-4">
-      <HeaderBar patient={patient} onSave={onSave} onDiscard={onDiscard} onLock={onLock} pushAudit={pushAudit} />
+      <HeaderBar patient={patient} onSave={onSave} onDiscard={onDiscard} onLock={onLock} />
       <RecordSummaryCard summary={summary} />
       <DiagnosisEditor activeItems={diagnoses} onAdd={addDiagnosis} onResolve={resolveDiagnosis} />
       <LabResults items={labs} onAdd={addLab} onFlag={flagLab} doctors={bundle.doctors} />
-      {/* <PrivacyConsentBanner consent={consent} onViewConsent={viewConsent} onRequestConsent={requestConsent} /> */}
+      <PrivacyConsentBanner consent={consent} onViewConsent={viewConsent} onRequestConsent={requestConsent} />
       <AuditTrailPreview items={audit} />
       <FooterBar onBack={backToList} onPrint={printSummary} onExportFHIR={exportFHIR} />
 
-      {/* <Modal open={consentOpen} onClose={()=>setConsentOpen(false)} title="Consent Details">
+      <Modal open={consentOpen} onClose={()=>setConsentOpen(false)} title="Consent Details">
         <ConsentDetails activeConsent={consentHistory[0]} consentHistory={consentHistory} />
-      </Modal> */}
+      </Modal>
     </div>
   )
 }

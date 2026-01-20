@@ -48,7 +48,7 @@
     @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 uppercase tracking-wide; 
   }
 } */
- /* @import "tailwindcss"; */
+ @import "tailwindcss";
 
 @layer components {
   /* 1. Shared Base Styles for Buttons */

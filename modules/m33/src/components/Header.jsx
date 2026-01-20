@@ -10,7 +10,6 @@ export const Header = () => {
     const [isProfileOpen, setIsProfileOpen] = useState(false)
     return (
         <div className=" bg-slate-50">
-            
             {/* GLOBAL CLINICAL HEADER */}
             <header className="bg-white border-b border-slate-200  top-0 z-[100]">
                 <div className="max-w-7xl mx-auto px-6 flex items-center justify-between py-4">

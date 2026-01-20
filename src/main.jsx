@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import "./Components/Charts/Setup.js"
 import './index.css'
+import "../modules/m3/src/index.css"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

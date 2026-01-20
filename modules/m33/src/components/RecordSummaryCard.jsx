@@ -9,11 +9,9 @@ export default function RecordSummaryCard({ summary }){
         </div>
         <div className="text-right">
           <div className="text-sm"><span className="font-medium">Primary Dx:</span> {summary.primaryDiagnosis}</div>
-          {/* <div className="text-sm"><span className="font-medium">Last Lab:</span> {summary.lastLabSummary.name}: {summary.lastLabSummary.value}{summary.lastLabSummary.units} ({summary.lastLabSummary.date})</div> */}
+          <div className="text-sm"><span className="font-medium">Last Lab:</span> {summary.lastLabSummary.name}: {summary.lastLabSummary.value}{summary.lastLabSummary.units} ({summary.lastLabSummary.date})</div>
         </div>
-        
       </div>
-      
     </div>
   )
 }
