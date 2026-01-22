@@ -76,7 +76,7 @@ const PatientVideoCall = () => {
 
   const startCall = async () => {
     // 1. Setup WebSocket
-    websocket.current = new WebSocket("ws://localhost:8086/ws/video");
+    websocket.current = new WebSocket("ws://localhost:5180/ws/video");
 
     websocket.current.onopen = async () => {
       console.log("WebSocket Connected");
