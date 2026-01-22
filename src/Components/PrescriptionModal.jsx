@@ -6,7 +6,7 @@ export default function PrescriptionModal({ patientId,setViewPrescriptions }) {
 
 //   useEffect(() => {
 
-//     fetch(`http://localhost:8080/prescriptions/${patientId}`)
+//     fetch(`http://localhost:8086/prescriptions/${patientId}`)
 //       .then((res) => res.json())
 //       .then((data) => setMeds(data))
 //       .catch(() => setMeds([]));

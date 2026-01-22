@@ -18,27 +18,7 @@ export const AppointmentProvider = ({ children }) => {
 
   // Persist to localStorage whenever appointments change
   useEffect(() => {
-    // localStorage.setItem("appointments", JSON.stringify(appointments));
-
-    //  const fetchAppointments = async () => {
-    //   try {
-      
-    //     const response = await fetch("http://localhost:8087/");
-        
-    //     if (!response.ok) {
-    //       throw new Error(`Server responded with status: ${response.status}`);
-    //     }
-
-    //     const data = await response.json();
-    //     setReport(data);
-    //   } catch (error) {
-    //     console.error("Failed to fetch reports:", error);
-    //   } 
-    // }
-
-    // fetchAppointments();
-
-
+    localStorage.setItem("appointments", JSON.stringify(appointments));
   }, [appointments]);
 
   // Generate unique ID
