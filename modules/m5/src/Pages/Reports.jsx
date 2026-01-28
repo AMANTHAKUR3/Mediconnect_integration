@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { ReportTable } from "../components/ReportComponents/ReportTable";
-import { getReportsData } from "../Services/ReportsService";
 import { Reportgeneration } from "../components/ReportComponents/Reportgeneration";
 import { ReportView } from "../components/ReportComponents/ReportView";
 
@@ -12,11 +11,22 @@ export const Reports = () => {
   const [format, setFormat] = useState("");
   const [periodType, setPeriodType] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
-  const generatedreports = [];
+  const [reload,setReload] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const onGenerate = ({ periodType, selectedDate }) => {
-    generatedreports.push({ periodType, selectedDate });
+  const onGenerate = async({ periodType, selectedDate }) => {
+    console.log(periodType , selectedDate);
+    const response = fetch("http://localhost:8083/api/admin/generate",{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                  },
+                body: JSON.stringify({
+                    frequency: periodType,
+                    selectedDate: selectedDate
+                })
+            });
+            if((await response).ok) setReload(prev=>!prev);
   };
 
   const handleGenerate = () => {
@@ -37,11 +47,10 @@ export const Reports = () => {
   };
 
   useEffect( () => {
-    // const data = getReportsData();
     const fetchReports = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:8083/api/reports");
+        const response = await fetch("http://localhost:8083/api/admin/reports");
         
         if (!response.ok) {
           throw new Error(`Server responded with status: ${response.status}`);
@@ -57,7 +66,7 @@ export const Reports = () => {
     };
 
     fetchReports();
-  }, []);
+  }, [reload]);
 
 
   if (loading) return <div>Loading reports from database...</div>;

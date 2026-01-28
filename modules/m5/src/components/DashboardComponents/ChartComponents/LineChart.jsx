@@ -1,15 +1,18 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 
-export default function LineChart() {
+
+
+export default function LineChart({readmitted,recovered}) {
   const labels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+ 
 
   const data = {
     labels,
     datasets: [
       {
         label: 'Readmission Rate',
-        data: [120,150,180,170,220,260,30,300,12,1,231,123],
+        data: [...readmitted],
         borderColor: '#1DB1A2',               // teal (≈ HSL 174 72% 40%)
         backgroundColor: 'rgba(29, 177, 162, 0.12)',
         tension: 0.35,
@@ -21,7 +24,7 @@ export default function LineChart() {
       },
       {
         label: 'Recovery Rate',
-        data: [100,90,40,70,120,60,330,200,102,10,31,203],
+        data: [...recovered],
         borderColor: '#F0745A',               // warm coral (≈ HSL 12 80% 60%)
         backgroundColor: 'rgba(240, 116, 90, 0.12)',
         tension: 0.35,

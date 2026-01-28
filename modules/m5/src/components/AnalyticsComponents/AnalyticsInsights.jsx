@@ -1,26 +1,4 @@
-// export default function AnalyticsInsights() {
-//   return (
-//     <div className="bg-white p-4 rounded-xl shadow-sm space-y-4">
-//       <h2 className="text-sm font-semibold text-gray-700">
-//         Insights
-//       </h2>
-
-//       <div className="p-3 bg-blue-50 rounded-lg text-sm text-gray-700">
-//         📈 Readmissions increased by <b>4%</b> compared to last quarter
-//       </div>
-
-//       <div className="p-3 bg-green-50 rounded-lg text-sm text-gray-700">
-//         💡 Diabetes shows the highest readmission rate among diseases
-//       </div>
-//     </div>
-//   );
-// }
-
-
-
-
-
-export default function AnalyticsInsights() {
+export default function AnalyticsInsights({data}) {
   const PRIMARY = "#1DB1A2";
   const ACCENT = "#aa4a3a";
 
@@ -56,7 +34,8 @@ export default function AnalyticsInsights() {
           borderLeft: `4px solid ${PRIMARY}`,
         }}
       >
-        📈 Readmissions increased by <b style={{ color: PRIMARY }}>4%</b> compared to last quarter
+        {/* 📈 Readmissions increased by <b style={{ color: PRIMARY }}>4%</b> compared to last quarter */}
+        {data[0]}
       </div>
 
       <div
@@ -67,7 +46,8 @@ export default function AnalyticsInsights() {
           borderLeft: `4px solid ${ACCENT}`,
         }}
       >
-        💡 Diabetes shows the highest readmission rate among diseases
+        {/* 💡 Diabetes shows the highest readmission rate among diseases */}
+        {data[1]}
       </div>
     </div>
   );

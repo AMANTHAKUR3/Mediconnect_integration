@@ -1,50 +1,4 @@
-// const data = [
-//   { disease: "Diabetes", rate: "14%" },
-//   { disease: "Pneumonia", rate: "35%" },
-//   { disease: "Heart Disease", rate: "60%" },
-//   { disease: "COPD", rate: "35%" },
-//   { disease: "Hypertension", rate: "14%" },
-// ];
-
-// export default function DiseaseAnalyticsTable() {
-//   return (
-//     <div className="bg-white p-4 rounded-xl shadow-sm">
-//       <h2 className="text-sm font-semibold text-gray-700 mb-4">
-//         Readmission Rate by Disease
-//       </h2>
-
-//       <div className="space-y-3">
-//         {data.map((item) => (
-//           <div key={item.disease}>
-//             <div className="flex justify-between text-sm mb-1">
-//               <span>{item.disease}</span>
-//               <span className="font-medium">{item.rate}</span>
-//             </div>
-//             <div className="h-2 bg-gray-200 rounded-full">
-//               <div
-//                 className="h-2 bg-blue-500 rounded-full"
-//                 style={{ width: item.rate }}
-//               />
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-
-
-
-const data = [
-  { disease: "Diabetes", rate: "14%" },
-  { disease: "Pneumonia", rate: "35%" },
-  { disease: "Heart Disease", rate: "60%" },
-  { disease: "COPD", rate: "35%" },
-  { disease: "Hypertension", rate: "14%" },
-];
-
-export default function DiseaseAnalyticsTable() {
+export default function DiseaseAnalyticsTable({data}) {
   const PRIMARY = "#1DB1A2"; // teal
   const ACCENT  = "#aa4a3a"; // warm accent
 
@@ -85,17 +39,18 @@ export default function DiseaseAnalyticsTable() {
         </span>
       </div>
 
+
       {/* Rows */}
       <div className="space-y-3">
         {data.map((item) => (
-          <div key={item.disease}>
+          <div key={item.diseaseName}>
             <div className="flex justify-between text-sm mb-1">
-              <span className="text-[#1f2a37]">{item.disease}</span>
+              <span className="text-[#1f2a37]">{item.diseaseName}</span>
               <span
                 className="font-semibold"
                 style={{ color: PRIMARY }}
               >
-                {item.rate}
+                {item.readmissionRate}
               </span>
             </div>
 
@@ -104,27 +59,15 @@ export default function DiseaseAnalyticsTable() {
               <div
                 className="h-2.5 rounded-full transition-all duration-300"
                 style={{
-                  width: item.rate,                      // logic unchanged
+                  width: item.readmissionRate,                      // logic unchanged
                   background: `linear-gradient(90deg, ${PRIMARY}, ${ACCENT})`,
                   boxShadow: `0 1px 4px ${PRIMARY}33`,
                 }}
-                aria-label={`${item.disease} ${item.rate}`}
+                aria-label={`${item.diseaseName} ${item.readmissionRate}`}
               />
             </div>
           </div>
         ))}
-      </div>
-
-      {/* Footer hint */}
-      <div className="mt-4 flex items-center justify-between text-xs">
-        <span className="text-[#6b7f92]">
-          Tip: percentages reflect monthly readmission distribution
-        </span>
-        <span
-          className="inline-block h-1 w-10 rounded-full"
-          style={{ background: `linear-gradient(90deg, ${PRIMARY}, ${ACCENT})` }}
-          aria-hidden="true"
-        />
       </div>
     </div>
   );
