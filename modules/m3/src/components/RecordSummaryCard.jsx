@@ -1,19 +1,22 @@
-
 export default function RecordSummaryCard({ summary }){
   return (
     <div className="card p-4">
       <div className="flex items-center justify-between">
         <div>
-          <div className="card-title">RecordID: {summary.recordId}</div>
-          <div className="card-subtitle">Updated: {new Date(summary.updatedAt).toLocaleString()}</div>
-        </div>
-        <div className="text-right">
-          <div className="text-sm"><span className="font-medium">Primary Dx:</span> {summary.primaryDiagnosis}</div>
-          {/* <div className="text-sm"><span className="font-medium">Last Lab:</span> {summary.lastLabSummary.name}: {summary.lastLabSummary.value}{summary.lastLabSummary.units} ({summary.lastLabSummary.date})</div> */}
+          {/* Removed recordId and updated the label to Last Updated */}
+          <div className="card-title text-slate-900 font-bold">Clinical Summary</div>
+          <div className="card-subtitle text-slate-500 text-xs">
+            Last Updated: {summary.updatedAt ? new Date(summary.updatedAt).toLocaleString('en-IN') : 'N/A'}
+          </div>
         </div>
         
+        <div className="text-right">
+          <div className="text-sm">
+            <span className="font-medium text-slate-700">Primary Diagnosis:</span> 
+            <span className="ml-2 font-bold text-blue-600">{summary.primaryDiagnosis}</span>
+          </div>
+        </div>
       </div>
-      
     </div>
   )
 }
